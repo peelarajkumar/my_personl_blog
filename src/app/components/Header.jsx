@@ -15,7 +15,7 @@ const Header = () => {
       <h1 className='text-3xl md:text-2xl lg:text-[66px] font-Ovo'>A Full Stack Developer from India</h1>
       <p className='max-w-2xl mx-auto font-Ovo'>
       I am a software developer with 4 years of experience, working across multiple front-end and backend frameworks, AI integration,
-       and delivering complex solutions with optimized performance
+       and delivering complex solutions with optimized performance and robustic solutions.
       </p>
       <div className='flex flex-col sm:flex-row items-center gap-4 mt-4'>
         <a className='px-10 py-3 border border-white rounded-full bg-black text-white flex items-center gap-2 hover:-translate-y-1 duration-500' href="#contact">Contact Me
