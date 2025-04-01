@@ -116,7 +116,7 @@ export const serviceData = [
     { 
         icon: assets.mobile_icon, 
         title: 'AI & Automation', 
-        description: 'Implementing AI-driven solutions, building chatbots, and automating processes to enhance efficiency and reduce overall time.', 
+        description: 'Implementing AI-driven solutions, building chatbots, and automating processes to enhance efficiency.', 
         link: '' 
     },
     { 
