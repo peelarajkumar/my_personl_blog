@@ -99,12 +99,34 @@ export const workData = [
     },
 ]
 
+
 export const serviceData = [
-    { icon: assets.web_icon, title: 'Web design', description: 'Web development is the process of building, programming...', link: '' },
-    { icon: assets.mobile_icon, title: 'Mobile app', description: 'Mobile app development involves creating software for mobile devices...', link: '' },
-    { icon: assets.ui_icon, title: 'UI/UX design', description: 'UI/UX design focuses on creating a seamless user experience...', link: '' },
-    { icon: assets.graphics_icon, title: 'Graphics design', description: 'Creative design solutions to enhance visual communication...', link: '' },
-]
+    { 
+        icon: assets.web_icon, 
+        title: 'Full-Stack Web Development', 
+        description: 'Building complex and dynamic web applications with robust and scalable solutions.', 
+        link: '' 
+    },
+    { 
+        icon: assets.ui_icon, 
+        title: 'Microservices Integration', 
+        description: 'Seamlessly integrating microservices into existing applications for better scalability and maintainability.', 
+        link: '' 
+    },
+    { 
+        icon: assets.mobile_icon, 
+        title: 'AI & Automation', 
+        description: 'Implementing AI-driven solutions, building chatbots, and automating processes to enhance efficiency and reduce overall time.', 
+        link: '' 
+    },
+    { 
+        icon: assets.graphics_icon, 
+        title: 'Problem Solving & Innovation', 
+        description: 'Providing innovative solutions to complex problems, ensuring seamless development and business growth.', 
+        link: '' 
+    }
+];
+
 
 export const infoList = [
     { icon: assets.code_icon, iconDark: assets.code_icon_dark, title: 'Languages', description: 'HTML5, CSS, Bootstrap, Tailwind,  JavaScript, Jquery, React Js, Next Js, AI, Azure' },
