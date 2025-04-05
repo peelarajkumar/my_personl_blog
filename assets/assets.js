@@ -6,6 +6,8 @@ import edu_icon_dark from './edu-icon-dark.png';
 import project_icon from './project-icon.png';
 import project_icon_dark from './project-icon-dark.png';
 import vscode from './vscode.png';
+import docker from './docker.png'
+import npm from './npm.png'
 import firebase from './firebase.png';
 import figma from './figma.png';
 import git from './git.png';
@@ -34,6 +36,7 @@ import graphics_icon from './graphics-icon.png';
 import right_arrow from './right-arrow.png';
 import send_icon from './send-icon.png';
 import right_arrow_bold from './right-arrow-bold.png';
+import vercel from './vercel.png'
 import right_arrow_bold_dark from './right-arrow-bold-dark.png';
 
 export const assets = {
@@ -48,6 +51,7 @@ export const assets = {
     firebase,
     figma,
     git,
+    npm,
     mongodb,
     right_arrow_white,
     logo,
@@ -73,30 +77,32 @@ export const assets = {
     right_arrow,
     send_icon,
     right_arrow_bold,
-    right_arrow_bold_dark
+    right_arrow_bold_dark,
+    vercel,
+    docker
 };
 
 export const workData = [
     {
-        title: 'Frontend project',
-        description: 'Web Design',
+        title: 'Skyward Speciality Insurance',
+        description: 'A robust and dynamic web application.',
         bgImage: '/work-1.png',
     },
     {
-        title: 'Geo based app',
-        description: 'Mobile App',
+        title: 'SkyChat',
+        description: 'Conversational AI chatbot that assists underwriters',
         bgImage: '/work-2.png',
     },
     {
-        title: 'Photography site',
-        description: 'Web Design',
+        title: 'IGCC Hub',
+        description: 'A comprehensive resource and workforce management App',
         bgImage: '/work-3.png',
     },
     {
-        title: 'UI/UX designing',
-        description: 'UI/UX Design',
+        title: 'Automation Tools',
+        description: 'Built tools for bulk emails and task automation.',
         bgImage: '/work-4.png',
-    },
+    }
 ]
 
 
@@ -129,12 +135,12 @@ export const serviceData = [
 
 
 export const infoList = [
-    { icon: assets.code_icon, iconDark: assets.code_icon_dark, title: 'Languages', description: 'HTML5, CSS, Bootstrap, Tailwind,  JavaScript, Jquery, React Js, Next Js, AI, Azure' },
-    { icon: assets.project_icon, iconDark: assets.project_icon_dark, title: 'Professional Career', description: 'Software developer in Donyati - Nov 2023 to Current' },
-    { icon: assets.edu_icon, iconDark: assets.edu_icon_dark, title: 'Education', description: 'B.Tech in Electrical and Electronics - 2016 to 2020' },
+    { icon: assets.code_icon, iconDark: assets.code_icon_dark, title: 'Languages', description: 'HTML5, CSS, Bootstrap, Tailwind, JavaScript, Jquery, ReactJs, NodeJS, ExpressJS, NextJs, AI, Azure,Power Apps,', },
+    { icon: assets.project_icon, iconDark: assets.project_icon_dark, title: 'Professional Career', description: 'Software developer in Donyati - Nov 2023 to Current \n Wavemaker - Jun 2021 to Nov 2023' },
+    { icon: assets.edu_icon, iconDark: assets.edu_icon_dark, title: 'Education', description: 'B.Tech in Electrical and Electronics - 2016 to 2020 with an aggregare of 7.3 CGPA' },
    
 ];
 
 export const toolsData = [
-    assets.vscode, assets.firebase, assets.mongodb, assets.figma, assets.git
+    assets.vscode, assets.firebase, assets.mongodb, assets.figma, assets.git , assets.vercel , assets.docker, assets.npm
 ];

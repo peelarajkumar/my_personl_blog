@@ -19,14 +19,14 @@ const NavBar = () => {
    <nav className='w-full fixed top-0 left-0 right-0 px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50'>
     {/*  Home page left side logo */}
     <a href='#top'>
-        <Image alt='logo' src={assets.logo} className='w-28 cursor-pointer mr-14' />
+        <Image alt='logo' src={assets.logo} className='hidden md:flex w-28 cursor-pointer mr-14' />
     </a>
     {/* Nav bar - home page */}
     <ul  className='hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50'>
         <li><a className='font-Ovo' href='#top'>Home</a></li>
         <li><a className='font-Ovo' href='#about'>About Me</a></li>
         <li><a className='font-Ovo' href='#services'>Services</a></li>
-        <li><a className='font-Ovo' href='#work'>My Work</a></li>
+        <li><a className='font-Ovo' href='#mywork'>My Work</a></li>
         <li><a className='font-Ovo' href='#contact'>Contact Me</a></li>
     </ul>
 
@@ -52,7 +52,7 @@ const NavBar = () => {
         <li><a className='font-Ovo' onClick={closeSideMenu} href='#top'>Home</a></li>
         <li><a className='font-Ovo' onClick={closeSideMenu} href='#about'>About Me</a></li>
         <li><a className='font-Ovo' onClick={closeSideMenu} href='#services'>Services</a></li>
-        <li><a className='font-Ovo' onClick={closeSideMenu} href='#work'>My Work</a></li>
+        <li><a className='font-Ovo' onClick={closeSideMenu} href='#mywork'>My Work</a></li>
         <li><a className='font-Ovo' onClick={closeSideMenu} href='#contact'>Contact Me</a></li>
     </ul>
 
