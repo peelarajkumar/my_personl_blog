@@ -26,7 +26,7 @@ const ChatBot = () => {
 
 PROFESSIONAL BACKGROUND:
 - Senior Full-Stack Developer with 5+ years of experience
-- Currently working at Tech Solutions Inc.
+- Currently working at Donyati India Pvt Ltd.
 - Specializes in React, Node.js, and AI integration
 - Expert in building automation tools and AI solutions
 
@@ -56,7 +56,7 @@ CONTACT:
 - Professional email and social media profiles linked
 - Open to new opportunities and collaborations
 
-You can answer questions about Rajkumar professionally and also help with general questions. Keep responses helpful, professional, and enthusiastic about Rajkumar's work.`;
+Only include Rajkumar's profile when the user's question is clearly related to him. For general questions, respond normally without referencing Rajkumar unless asked.`;
 
   const getAIResponse = async (userMessage: string) => {
     const apiKey = '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';
