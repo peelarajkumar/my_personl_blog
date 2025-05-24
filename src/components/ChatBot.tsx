@@ -59,7 +59,7 @@ CONTACT:
 Only include Rajkumar's profile when the user's question is clearly related to him. For general questions, respond normally without referencing Rajkumar unless asked.`;
 
   const getAIResponse = async (userMessage: string) => {
-    const apiKey = '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';
+    const apiKey = import.meta.env.AI_API_KEY;
 
     try {
       const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
