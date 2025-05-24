@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, User, MessageCircle } from 'lucide-react';
+import { Mail, Github, User, MessageCircle, CheckCircle } from 'lucide-react';
+import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -10,11 +11,75 @@ const ContactSection = () => {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+
+    try {
+      // Using EmailJS-like service or direct email sending
+      const emailData = {
+        to_email: 'peelarajkumar@gmail.com',
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: `
+Name: ${formData.name}
+Email: ${formData.email}
+Subject: ${formData.subject}
+
+Message:
+${formData.message}
+
+---
+Sent from Rajkumar's Portfolio Contact Form
+        `,
+      };
+
+      // Simple email sending using Formspree or similar service
+      const response = await fetch('https://formspree.io/f/xqakvorw', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          name: formData.name,
+          subject: formData.subject,
+          message: formData.message,
+          _replyto: formData.email,
+          _subject: `New Contact Form Submission: ${formData.subject}`,
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message Sent Successfully!",
+          description: "Thank you for reaching out. Rajkumar will get back to you soon.",
+        });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending email:', error);
+      toast({
+        title: "Failed to Send Message",
+        description: "There was an error sending your message. Please try again or contact directly at peelarajkumar@gmail.com",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -38,7 +103,7 @@ const ContactSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-teal-600 to-orange-600 bg-clip-text text-transparent">
             Get In Touch
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -66,12 +131,12 @@ const ContactSection = () => {
                 whileHover={{ scale: 1.05 }}
                 className="flex items-center p-4 bg-white rounded-xl shadow-lg"
               >
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mr-4">
+                <div className="w-12 h-12 bg-gradient-to-r from-teal-500 to-orange-500 rounded-lg flex items-center justify-center mr-4">
                   <Mail className="text-white" size={24} />
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-800">Email</h4>
-                  <p className="text-gray-600">rajkumar@example.com</p>
+                  <p className="text-gray-600">peelarajkumar@gmail.com</p>
                 </div>
               </motion.div>
 
@@ -99,7 +164,7 @@ const ContactSection = () => {
               <div className="grid md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Name
+                    Name *
                   </label>
                   <input
                     type="text"
@@ -107,13 +172,14 @@ const ContactSection = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300"
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email
+                    Email *
                   </label>
                   <input
                     type="email"
@@ -121,15 +187,16 @@ const ContactSection = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300"
                     required
+                    disabled={isSubmitting}
                   />
                 </div>
               </div>
 
               <div className="mb-6">
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                  Subject
+                  Subject *
                 </label>
                 <input
                   type="text"
@@ -137,14 +204,15 @@ const ContactSection = () => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
               <div className="mb-6">
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message
+                  Message *
                 </label>
                 <textarea
                   id="message"
@@ -152,20 +220,39 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-300 resize-none"
                   required
+                  disabled={isSubmitting}
                 ></textarea>
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
                 type="submit"
-                className="w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                disabled={isSubmitting}
+                className="w-full px-8 py-4 bg-gradient-to-r from-teal-500 to-orange-500 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               >
-                <MessageCircle className="inline-block mr-2" size={20} />
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
+                    />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <MessageCircle className="inline-block mr-2" size={20} />
+                    Send Message
+                  </>
+                )}
               </motion.button>
+              
+              <p className="text-sm text-gray-500 mt-4 text-center">
+                Your message will be sent directly to Rajkumar at peelarajkumar@gmail.com
+              </p>
             </form>
           </motion.div>
         </div>
