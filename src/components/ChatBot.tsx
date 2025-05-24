@@ -59,17 +59,19 @@ CONTACT:
 You can answer questions about Rajkumar professionally and also help with general questions. Keep responses helpful, professional, and enthusiastic about Rajkumar's work.`;
 
   const getAIResponse = async (userMessage: string) => {
-    const apiKey = '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';
+    const apiKey = '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';
 
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
+          'HTTP-Referer': window.location.origin,
+          'X-Title': 'Rajkumar Portfolio Assistant',
         },
         body: JSON.stringify({
-          model: 'gpt-4o-mini',
+          model: 'mistralai/mistral-7b-instruct',
           messages: [
             { role: 'system', content: rajkumarKnowledge },
             { role: 'user', content: userMessage }
@@ -86,7 +88,7 @@ You can answer questions about Rajkumar professionally and also help with genera
       const data = await response.json();
       return data.choices[0].message.content;
     } catch (error) {
-      console.error('OpenAI API Error:', error);
+      console.error('OpenRouter API Error:', error);
       return "I apologize, but I'm having trouble connecting right now. Please try asking about Rajkumar's experience, skills, or projects, and I'll do my best to help you!";
     }
   };
@@ -169,7 +171,7 @@ You can answer questions about Rajkumar professionally and also help with genera
                 </motion.div>
                 <div>
                   <h3 className="font-semibold">Raj's AI Assistant</h3>
-                  <p className="text-xs opacity-90">Powered by OpenAI GPT-4</p>
+                  <p className="text-xs opacity-90">Powered by Mistral AI</p>
                 </div>
               </div>
               <button 
