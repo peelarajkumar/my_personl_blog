@@ -64,8 +64,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-teal-50 via-orange-50 to-pink-50">
-      <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
-      
+      <Sidebar
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+      />
+
       <main className="lg:ml-64 min-h-screen">
         <AnimatePresence mode="wait">
           <motion.div
@@ -76,7 +79,9 @@ const Index = () => {
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className="w-full"
           >
-            {currentSection && <currentSection.component />}
+            {currentSection && (
+              <currentSection.component setActiveSection={setActiveSection} />
+            )}
           </motion.div>
         </AnimatePresence>
       </main>

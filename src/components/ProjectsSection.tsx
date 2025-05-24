@@ -6,55 +6,69 @@ import { Github, ArrowUp, Code } from 'lucide-react';
 const ProjectsSection = () => {
   const [filter, setFilter] = useState('all');
 
+
+
   const projects = [
-    {
-      id: 1,
-      title: "AI-Powered Automation Suite",
-      description: "Built comprehensive automation tools using Node.js and Puppeteer for web scraping and data processing",
-      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&h=400&fit=crop",
-      tags: ["NodeJS", "Puppeteer", "AI", "Automation"],
-      category: "automation",
-      github: "#",
-      demo: "#"
-    },
-    {
-      id: 2,
-      title: "Microservices Integration Platform",
-      description: "Integrated multiple services including HazardHub, Experian, and payment gateways into a unified platform",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-      tags: ["NodeJS", "ExpressJS", "Azure", "Microservices"],
-      category: "backend",
-      github: "#",
-      demo: "#"
-    },
-    {
-      id: 3,
-      title: "React Dashboard with AI Analytics",
-      description: "Modern dashboard built with React and Redux, featuring AI-powered analytics and real-time data visualization",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-      tags: ["ReactJS", "Redux", "OpenAI", "Charts"],
-      category: "frontend",
-      github: "#",
-      demo: "#"
-    },
-    {
-      id: 4,
-      title: "Intelligent Chatbot System",
-      description: "AI chatbot with natural language processing capabilities, integrated with OpenAI for smart responses",
-      image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&h=400&fit=crop",
-      tags: ["OpenAI", "NodeJS", "ReactJS", "AI"],
-      category: "ai",
-      github: "#",
-      demo: "#"
-    }
-  ];
+  {
+    id: 1,
+    title: "Underwriter Workbench",
+    description:
+      "A web application that assists underwriters in evaluating insured information, premiums, and managing the insurance flow—quoting, binding, renewal, etc. Built using JavaScript, jQuery, Node.js, Power Apps, and Hasura.",
+    image: "https://insurancetrainingcenter.com/wp-content/uploads/2021/04/What-is-an-Underwriter.jpg?w=600&h=400&fit=crop",
+    tags: ["JavaScript", "jQuery", "NodeJS", "Power Apps", "Hasura"],
+    category: "webapp",
+    github: "#",
+    demo: "#"
+  },
+  {
+    id: 2,
+    title: "Wealth Management System",
+    description:
+      "An end-to-end wealth management platform for tracking assets, liabilities, and relationship accounts. Developed using ReactJS, Node.js, and the low-code platform Wavemaker.",
+    image: "https://www.doozymarketing.com/wp-content/uploads/2022/09/Wealth-Management.jpg?w=600&h=400&fit=crop",
+    tags: ["ReactJS", "NodeJS", "Wavemaker", "Finance"],
+    category: "finance",
+    github: "#",
+    demo: "#"
+  },
+  {
+    id: 3,
+    title: "Banking Application – FIS Cortex",
+    description:
+      "A card management system built for banking operations—creating, updating, and managing cards. Developed using JavaScript and Wavemaker for FIS Cortex.",
+    image: "https://cdn.vectorstock.com/i/1000v/72/54/bank-vector-15347254.jpg?rs=1&pid=ImgDetMain?w=600&h=400&fit=crop",
+    tags: ["JavaScript", "Wavemaker", "Banking", "FIS Cortex"],
+    category: "banking",
+    github: "#",
+    demo: "#"
+  },
+  {
+    id: 4,
+    title: "AI-Powered Underwriting Assistant",
+    description:
+      "An AI bot designed to assist underwriters in performing risk analysis by scoring insureds based on policy submissions. Built using OpenAI, Node.js, and ReactJS.",
+    image: "https://static.vecteezy.com/system/resources/thumbnails/001/975/259/small_2x/artificial-intelligence-lifestyle-users-and-scientists-exchange-information-around-ai-characters-flat-design-style-minimal-illustration-vector.jpg?w=600&h=400&fit=crop",
+    tags: ["OpenAI", "NodeJS", "ReactJS", "AI", "Insurance"],
+    category: "ai",
+    github: "#",
+    demo: "#"
+  },
+  {
+  id: 5,
+  title: "IGCC – RFP & Resource Management System",
+  description:
+    "A comprehensive internal platform for managing RFPs, clients, ongoing projects, and SOWs for a large construction company. Designed to digitally streamline resource and project management workflows. Built using ReactJS, Supabase, Node.js, and deployed on Vercel.",
+  image: "https://c8.alamy.com/comp/2RA3BMP/cartoon-factory-on-white-background-in-flat-style-for-icon-2RA3BMP.jpg?w=600&h=400&fit=crop",
+  tags: ["ReactJS", "Supabase", "NodeJS", "Vercel", "RFP Management"],
+  category: "management",
+  github: "#",
+  demo: "#"
+}
+];
+
 
   const filters = [
-    { key: 'all', label: 'All Projects' },
-    { key: 'frontend', label: 'Frontend' },
-    { key: 'backend', label: 'Backend' },
-    { key: 'automation', label: 'Automation' },
-    { key: 'ai', label: 'AI Solutions' }
+    { key: 'all', label: 'Recent Projects' },
   ];
 
   const filteredProjects = filter === 'all' 

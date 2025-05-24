@@ -7,44 +7,44 @@ const ExperienceSection = () => {
   const experiences = [
     {
       id: 1,
-      title: "Senior Full-Stack Developer",
-      company: "Tech Solutions Inc.",
-      period: "2022 - Present",
-      location: "Remote",
-      description: "Leading development of automation tools and AI-integrated solutions. Built microservices architecture using Node.js and integrated multiple third-party APIs including HazardHub and Experian.",
+      title: "Software Developer",
+      company: "Donyati India Private Limited",
+      period: "2023 - Present",
+      location: "Bengaluru",
+      description: "Developing modern, scalable web applications using a wide range of frontend and backend technologies including JavaScript, jQuery, ReactJS, Node.js, Hasura, and MySQL and related technologies. Experienced in deploying solutions to the cloud with Azure, integrating third-party APIs, and building automation tools. Built a custom AI chatbot using OpenAI APIs, designed to streamline workflows and enhance user interaction within web platforms.",
       achievements: [
-        "Reduced processing time by 60% through automation",
-        "Led team of 4 developers",
-        "Implemented CI/CD pipelines"
+        "Built an AI-powered chatbot to evaluate financial risk and generate reports using OpenAI.",
+        "Integrated third-party data services including HazardHub for risk analysis and reporting.",
+        "Streamlined manual business processes, resulting in a significant reduction in operational effort and time."
       ],
       color: "from-teal-500 to-cyan-500"
     },
     {
       id: 2,
-      title: "Full-Stack Developer",
-      company: "Digital Innovations Ltd.",
-      period: "2020 - 2022",
-      location: "New York, NY",
-      description: "Developed modern web applications using React and Node.js. Specialized in browser automation using Puppeteer and built AI chatbots with OpenAI integration.",
+      title: "Development Engineer",
+      company: "Wavemaker India",
+      period: "2021 - 2023",
+      location: "Hyderabad",
+      description: "Developed multiple dynamic web applications using ReactJS and a low-code/no-code platform (Wavemaker). Led a team of developers, guiding them in building scalable and complex UI modules while actively contributing to the architecture and feature planning. Collaborated closely with stakeholders to propose and implement the best possible solutions tailored to business needs.",
       achievements: [
-        "Built 15+ production web applications",
-        "Implemented automated testing suites",
-        "Optimized application performance by 40%"
+        "Led the successful end-to-end development and deployment of a full-scale banking application.",
+        "Streamlined financial and wealth management processes by replacing manual workflows, significantly improving efficiency for banking staff.",
+        "Designed and implemented reusable components adopted across the platform, enhancing consistency and accelerating development cycles."
       ],
       color: "from-orange-400 to-red-400"
     },
     {
       id: 3,
-      title: "Frontend Developer",
-      company: "StartupXYZ",
-      period: "2019 - 2020",
-      location: "San Francisco, CA",
-      description: "Focused on creating responsive user interfaces with React and modern CSS frameworks. Collaborated with design teams to implement pixel-perfect designs.",
+      title: "Software Intern",
+      company: "Motivity Labs",
+      period: "2020 - 2021",
+      location: "Hyderabad",
+      description: "Focused on building foundational skills in HTML, CSS, JavaScript, and React. Gradually transitioned into contributing to internal projects while gaining exposure to real-world development practices, SDLC, and Agile workflows.",
       achievements: [
-        "Improved user engagement by 35%",
-        "Developed component library",
-        "Mentored junior developers"
-      ],
+    "Built UI components as part of internal resource management projects.",
+    "Participated in sprint planning and learned Agile methodologies.",
+    "Improved understanding of version control, debugging, and frontend workflows."
+  ],
       color: "from-purple-500 to-pink-500"
     }
   ];

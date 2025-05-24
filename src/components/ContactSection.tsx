@@ -1,8 +1,9 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, User, MessageCircle, CheckCircle } from 'lucide-react';
+import { Mail, Github, User, MessageCircle, CheckCircle, LinkedinIcon } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
+import emailjs from 'emailjs-com';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -17,61 +18,37 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+  
     try {
-      // Using EmailJS-like service or direct email sending
-      const emailData = {
-        to_email: 'peelarajkumar@gmail.com',
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: `
-Name: ${formData.name}
-Email: ${formData.email}
-Subject: ${formData.subject}
-
-Message:
-${formData.message}
-
----
-Sent from Rajkumar's Portfolio Contact Form
-        `,
-      };
-
-      // Simple email sending using Formspree or similar service
-      const response = await fetch('https://formspree.io/f/xqakvorw', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          name: formData.name,
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        'service_r7dr1u7',        // 🔁 Replace with actual service ID
+        'template_e4yxete',       // 🔁 Replace with actual template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
-          _replyto: formData.email,
-          _subject: `New Contact Form Submission: ${formData.subject}`,
-        }),
+        },
+        'gQa38-xTx6rrFsh74'         // 🔁 Replace with your EmailJS public key
+      );
+  
+      console.log('EmailJS success:', result.text);
+  
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for reaching out. Rajkumar will get back to you soon.",
       });
-
-      if (response.ok) {
-        toast({
-          title: "Message Sent Successfully!",
-          description: "Thank you for reaching out. Rajkumar will get back to you soon.",
-        });
-        
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: ''
-        });
-      } else {
-        throw new Error('Failed to send message');
-      }
+  
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+  
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('EmailJS error:', error);
       toast({
         title: "Failed to Send Message",
         description: "There was an error sending your message. Please try again or contact directly at peelarajkumar@gmail.com",
@@ -150,6 +127,19 @@ Sent from Rajkumar's Portfolio Contact Form
                 <div>
                   <h4 className="font-semibold text-gray-800">GitHub</h4>
                   <p className="text-gray-600">github.com/rajkumar</p>
+                </div>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center p-4 bg-white rounded-xl shadow-lg"
+              >
+                <div className="w-12 h-12 bg-gradient-to-r from-gray-700 to-gray-900 rounded-lg flex items-center justify-center mr-4">
+                  <LinkedinIcon className="text-white" size={24} />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-800">LinkedIn</h4>
+                  <p className="text-gray-600">https://www.linkedin.com/in/raj-kumar-peela/</p>
                 </div>
               </motion.div>
             </div>

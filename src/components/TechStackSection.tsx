@@ -11,25 +11,27 @@ const TechStackSection = () => {
       { name: 'HTML5', icon: '🌐', color: 'from-orange-400 to-red-400' },
       { name: 'CSS3', icon: '🎨', color: 'from-blue-400 to-cyan-400' },
       { name: 'JavaScript', icon: '⚡', color: 'from-yellow-400 to-orange-400' },
+      { name: 'jQuery', icon: '🧰', color: 'from-blue-500 to-indigo-500' },
       { name: 'ReactJS', icon: '⚛️', color: 'from-blue-400 to-cyan-400' },
       { name: 'Redux', icon: '🔄', color: 'from-purple-400 to-pink-400' },
+      { name: 'Tailwind', icon: '🍃', color: 'from-yellow-400 to-orange-400' },
       { name: 'NextJS', icon: '▲', color: 'from-gray-600 to-gray-800' },
     ],
     backend: [
       { name: 'NodeJS', icon: '🟢', color: 'from-green-400 to-green-500' },
       { name: 'ExpressJS', icon: '🚀', color: 'from-gray-500 to-gray-700' },
       { name: 'SQL', icon: '🗄️', color: 'from-blue-500 to-blue-700' },
-      { name: 'Supabase', icon: '⚡', color: 'from-green-400 to-emerald-400' },
+      { name: 'Supabase', icon: '🖥️', color: 'from-green-400 to-emerald-400' },
     ],
     cloud: [
       { name: 'Azure', icon: '☁️', color: 'from-blue-400 to-blue-600' },
       { name: 'Vercel', icon: '▲', color: 'from-gray-700 to-black' },
-      { name: 'Azure AI', icon: '🤖', color: 'from-indigo-400 to-purple-500' },
+      { name: 'Supabase', icon: '🖥️', color: 'from-green-400 to-emerald-400' },
     ],
     tools: [
-      { name: 'Puppeteer', icon: '🎭', color: 'from-green-400 to-teal-400' },
-      { name: 'OpenAI', icon: '🧠', color: 'from-green-400 to-blue-400' },
-      { name: 'jQuery', icon: '📜', color: 'from-blue-500 to-indigo-500' },
+      { name: 'Postman', icon: '🟠', color: 'from-blue-400 to-blue-600' }, 
+      { name: 'Hasura', icon: '⚙️', color: 'from-gray-700 to-black' },
+      { name: 'Azure AI', icon: '🤖', color: 'from-indigo-400 to-purple-500' },
     ]
   };
 

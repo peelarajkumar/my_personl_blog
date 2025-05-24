@@ -18,7 +18,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection }) =>
     { id: 'projects', label: 'Projects', icon: Code },
     { id: 'techstack', label: 'Tech Stack', icon: Settings },
     { id: 'services', label: 'Services', icon: Settings },
-    { id: 'certifications', label: 'Certifications', icon: Award },
+    // { id: 'certifications', label: 'Certifications', icon: Award },
     { id: 'contact', label: 'Contact', icon: Mail },
   ];
 

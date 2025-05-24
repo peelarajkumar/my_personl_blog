@@ -42,16 +42,15 @@ const AboutSection = () => {
           >
             <h3 className="text-3xl font-bold text-gray-800 mb-6">My Journey</h3>
             <p className="text-gray-600 leading-relaxed text-lg">
-              With over 5 years of experience in full-stack development, I've had the privilege 
-              of working on diverse projects ranging from automation tools to AI-integrated solutions. 
-              My journey began with a curiosity for how things work, and it has evolved into a 
-              passion for building exceptional digital experiences.
+             With over 5 years of experience in full-stack development, I’ve had the opportunity to work on a wide range of projects—from building 
+             robust end-to-end web applications to developing automation tools and AI-powered solutions. What started as a curiosity about 
+             how things work has evolved into a passion for creating seamless and impactful digital experiences. My core expertise lies in modern web technologies 
+             such as React and Node.js, along with cloud platforms like Supabase and Azure
             </p>
             <p className="text-gray-600 leading-relaxed text-lg">
-              I specialize in modern web technologies including React, Node.js, and cloud platforms. 
-              My expertise extends to automation using Puppeteer, AI integration with OpenAI, 
-              and microservices architecture. I believe in writing clean, maintainable code 
-              and following best practices.
+              Beyond development, I’ve led integrations involving Puppeteer for browser automation, payment gateways, HazardHub and Experian for risk and report systems, 
+              and AI capabilities using OpenAI. I follow a microservices-first approach when architecting scalable applications and prioritize writing clean, maintainable code. I focus on translating business ideas into well-optimized, 
+              technical solutions that are not only efficient but also user-centric and future-ready
             </p>
           </motion.div>
 
