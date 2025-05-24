@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, User, Bot, Send } from 'lucide-react';
 
@@ -14,37 +14,54 @@ const ChatBot = () => {
   ]);
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [apiKey, setApiKey] = useState('');
-  const [showApiInput, setShowApiInput] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const rajkumarKnowledge = {
-    experience: "Rajkumar has 5+ years of full-stack development experience, specializing in React, Node.js, and AI integration. He's currently a Senior Full-Stack Developer at Tech Solutions Inc., where he leads automation projects and AI solutions.",
-    skills: "His core technical skills include ReactJS, NodeJS, JavaScript, Python, Azure, Supabase, OpenAI integration, Puppeteer automation, microservices architecture, and modern web development frameworks.",
-    projects: "He has built automation tools using Node.js and Puppeteer, AI chatbots with OpenAI integration, microservices with HazardHub and Experian APIs, modern web applications, and various automation solutions.",
-    contact: "You can reach Rajkumar through the contact form on this website, via email, or through his social media profiles linked in the portfolio.",
-    education: "Rajkumar has a strong background in computer science and continuously updates his skills with the latest technologies and frameworks.",
-    achievements: "Key achievements include reducing processing time by 60% through automation, leading development teams, implementing CI/CD pipelines, and building 15+ production applications."
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  useEffect(scrollToBottom, [messages]);
+
+  const rajkumarKnowledge = `You are Rajkumar's personal AI assistant. Here's what you know about Rajkumar:
+
+PROFESSIONAL BACKGROUND:
+- Senior Full-Stack Developer with 5+ years of experience
+- Currently working at Tech Solutions Inc.
+- Specializes in React, Node.js, and AI integration
+- Expert in building automation tools and AI solutions
+
+TECHNICAL SKILLS:
+- Frontend: ReactJS, NextJS, JavaScript, HTML5, CSS3, Redux, jQuery
+- Backend: NodeJS, ExpressJS, SQL, Supabase
+- Cloud & Deployment: Azure, Vercel, Azure AI
+- Tools & Libraries: Puppeteer, OpenAI integration, automation tools
+- Specializes in microservices architecture and modern web development
+
+KEY PROJECTS:
+- Automation tools using Node.js and Puppeteer
+- AI chatbots with OpenAI integration
+- Microservices with HazardHub and Experian APIs
+- Browser automation solutions
+- Modern web applications with 15+ production apps
+
+ACHIEVEMENTS:
+- Reduced processing time by 60% through automation
+- Led development teams successfully
+- Implemented CI/CD pipelines
+- Built scalable web applications
+- Expert in AI integration and automation
+
+CONTACT:
+- Available through the portfolio contact form
+- Professional email and social media profiles linked
+- Open to new opportunities and collaborations
+
+You can answer questions about Rajkumar professionally and also help with general questions. Keep responses helpful, professional, and enthusiastic about Rajkumar's work.`;
+
   const getAIResponse = async (userMessage: string) => {
-    if (!apiKey) {
-      setShowApiInput(true);
-      return "To provide you with AI-powered responses, I need your OpenAI API key. Please enter it in the field above, and I'll be able to help you with both questions about Rajkumar and general inquiries!";
-    }
+    const apiKey = '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';
 
     try {
-      const systemPrompt = `You are Rajkumar's personal AI assistant. Your primary role is to help users learn about Rajkumar's professional background, skills, and experience as a full-stack developer.
-
-Here's what you know about Rajkumar:
-- ${rajkumarKnowledge.experience}
-- ${rajkumarKnowledge.skills}
-- ${rajkumarKnowledge.projects}
-- ${rajkumarKnowledge.achievements}
-
-You can also help with general questions, but always maintain a professional and friendly tone. If asked about Rajkumar, use the knowledge above. For other questions, provide helpful and accurate responses.
-
-Keep responses concise but informative, and always be enthusiastic about Rajkumar's work and capabilities.`;
-
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -54,23 +71,23 @@ Keep responses concise but informative, and always be enthusiastic about Rajkuma
         body: JSON.stringify({
           model: 'gpt-4o-mini',
           messages: [
-            { role: 'system', content: systemPrompt },
+            { role: 'system', content: rajkumarKnowledge },
             { role: 'user', content: userMessage }
           ],
-          max_tokens: 300,
+          max_tokens: 500,
           temperature: 0.7,
         }),
       });
 
       if (!response.ok) {
-        throw new Error('API request failed');
+        throw new Error(`API request failed: ${response.status}`);
       }
 
       const data = await response.json();
       return data.choices[0].message.content;
     } catch (error) {
       console.error('OpenAI API Error:', error);
-      return "I'm having trouble connecting to my AI capabilities right now. Let me help you with some basic information about Rajkumar instead! Feel free to ask about his experience, skills, or projects.";
+      return "I apologize, but I'm having trouble connecting right now. Please try asking about Rajkumar's experience, skills, or projects, and I'll do my best to help you!";
     }
   };
 
@@ -80,7 +97,7 @@ Keep responses concise but informative, and always be enthusiastic about Rajkuma
     const newMessage = {
       id: messages.length + 1,
       text: inputText,
-      sender: 'user'
+      sender: 'user' as const
     };
 
     setMessages(prev => [...prev, newMessage]);
@@ -94,7 +111,7 @@ Keep responses concise but informative, and always be enthusiastic about Rajkuma
         const botResponse = {
           id: messages.length + 2,
           text: response,
-          sender: 'bot'
+          sender: 'bot' as const
         };
         setMessages(prev => [...prev, botResponse]);
         setIsLoading(false);
@@ -104,9 +121,16 @@ Keep responses concise but informative, and always be enthusiastic about Rajkuma
       const errorResponse = {
         id: messages.length + 2,
         text: "I apologize, but I'm experiencing some technical difficulties. Please try asking about Rajkumar's experience, skills, or projects!",
-        sender: 'bot'
+        sender: 'bot' as const
       };
       setMessages(prev => [...prev, errorResponse]);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
     }
   };
 
@@ -116,7 +140,7 @@ Keep responses concise but informative, and always be enthusiastic about Rajkuma
         onClick={() => setIsOpen(true)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full shadow-lg flex items-center justify-center z-50"
+        className="fixed bottom-6 right-6 w-16 h-16 bg-gradient-to-r from-teal-400 to-cyan-400 rounded-full shadow-lg flex items-center justify-center z-50 hover:shadow-xl transition-shadow"
       >
         <motion.div
           animate={{ rotate: [0, 10, -10, 0] }}
@@ -132,9 +156,9 @@ Keep responses concise but informative, and always be enthusiastic about Rajkuma
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="fixed bottom-24 right-6 w-96 h-[500px] bg-white rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden"
+            className="fixed bottom-24 right-6 w-96 h-[500px] bg-white rounded-2xl shadow-2xl z-50 flex flex-col overflow-hidden border border-gray-200"
           >
-            <div className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white p-4 flex justify-between items-center">
+            <div className="bg-gradient-to-r from-teal-400 to-cyan-400 text-white p-4 flex justify-between items-center">
               <div className="flex items-center">
                 <motion.div
                   animate={{ rotate: 360 }}
@@ -145,33 +169,18 @@ Keep responses concise but informative, and always be enthusiastic about Rajkuma
                 </motion.div>
                 <div>
                   <h3 className="font-semibold">Raj's AI Assistant</h3>
-                  <p className="text-xs opacity-90">Powered by OpenAI</p>
+                  <p className="text-xs opacity-90">Powered by OpenAI GPT-4</p>
                 </div>
               </div>
-              <button onClick={() => setIsOpen(false)}>
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="hover:bg-white/20 p-1 rounded transition-colors"
+              >
                 <X size={20} />
               </button>
             </div>
 
-            {showApiInput && (
-              <div className="p-4 bg-orange-50 border-b">
-                <input
-                  type="password"
-                  value={apiKey}
-                  onChange={(e) => setApiKey(e.target.value)}
-                  placeholder="Enter your OpenAI API key..."
-                  className="w-full px-3 py-2 border rounded-lg text-sm"
-                />
-                <button
-                  onClick={() => setShowApiInput(false)}
-                  className="mt-2 px-3 py-1 bg-teal-500 text-white rounded text-sm"
-                >
-                  Save API Key
-                </button>
-              </div>
-            )}
-
-            <div className="flex-1 p-4 overflow-y-auto space-y-3">
+            <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50">
               {messages.map((message) => (
                 <motion.div
                   key={message.id}
@@ -180,14 +189,14 @@ Keep responses concise but informative, and always be enthusiastic about Rajkuma
                   className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div className={`flex items-start max-w-xs ${message.sender === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${message.sender === 'user' ? 'bg-teal-500 ml-2' : 'bg-orange-400 mr-2'}`}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${message.sender === 'user' ? 'bg-teal-400 ml-2' : 'bg-orange-400 mr-2'}`}>
                       {message.sender === 'user' ? <User size={16} className="text-white" /> : <Bot size={16} className="text-white" />}
                     </div>
                     <div
                       className={`px-4 py-2 rounded-lg ${
                         message.sender === 'user'
-                          ? 'bg-teal-500 text-white'
-                          : 'bg-gray-100 text-gray-800'
+                          ? 'bg-teal-400 text-white'
+                          : 'bg-white text-gray-800 shadow-sm'
                       }`}
                     >
                       {message.text}
@@ -201,35 +210,36 @@ Keep responses concise but informative, and always be enthusiastic about Rajkuma
                   animate={{ opacity: 1 }}
                   className="flex justify-start"
                 >
-                  <div className="flex items-center bg-gray-100 px-4 py-2 rounded-lg">
+                  <div className="flex items-center bg-white px-4 py-2 rounded-lg shadow-sm">
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                      className="w-4 h-4 border-2 border-teal-500 border-t-transparent rounded-full mr-2"
+                      className="w-4 h-4 border-2 border-teal-400 border-t-transparent rounded-full mr-2"
                     />
                     <span className="text-gray-600">Thinking...</span>
                   </div>
                 </motion.div>
               )}
+              <div ref={messagesEndRef} />
             </div>
 
-            <div className="p-4 border-t">
+            <div className="p-4 border-t bg-white">
               <div className="flex space-x-2">
                 <input
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                  onKeyPress={handleKeyPress}
                   placeholder="Ask about Rajkumar or anything else..."
-                  className="flex-1 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-transparent"
                   disabled={isLoading}
                 />
                 <motion.button
                   onClick={handleSendMessage}
-                  disabled={isLoading}
+                  disabled={isLoading || !inputText.trim()}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-lg hover:shadow-lg transition-all duration-200 disabled:opacity-50"
+                  className="px-4 py-2 bg-gradient-to-r from-teal-400 to-cyan-400 text-white rounded-lg hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send size={16} />
                 </motion.button>
