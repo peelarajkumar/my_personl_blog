@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Sidebar from '../components/Sidebar';
@@ -43,7 +42,7 @@ const Index = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-cyan-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-teal-50 via-orange-50 to-pink-50 flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -53,9 +52,9 @@ const Index = () => {
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"
+            className="w-16 h-16 border-4 border-teal-500 border-t-transparent rounded-full mx-auto mb-4"
           />
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-orange-600 bg-clip-text text-transparent">
             Loading Portfolio...
           </h2>
         </motion.div>
@@ -64,7 +63,7 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-cyan-50">
+    <div className="min-h-screen bg-gradient-to-br from-teal-50 via-orange-50 to-pink-50">
       <Sidebar activeSection={activeSection} setActiveSection={setActiveSection} />
       
       <main className="lg:ml-64 min-h-screen">

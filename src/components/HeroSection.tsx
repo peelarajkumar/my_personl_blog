@@ -40,16 +40,13 @@ const HeroSection = () => {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 p-1"
+              className="absolute inset-0 rounded-full bg-gradient-to-r from-teal-400 via-cyan-500 to-orange-400 p-1"
             >
               <div className="w-full h-full rounded-full bg-white p-2">
                 <img
-                  src="/lovable-uploads/professional-headshot.jpg"
+                  src="/lovable-uploads/c843319e-86e9-4d96-bedd-858510a95aaa.png"
                   alt="Rajkumar - Full Stack Developer"
                   className="w-full h-full rounded-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.src = `https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face`;
-                  }}
                 />
               </div>
             </motion.div>
@@ -60,7 +57,7 @@ const HeroSection = () => {
           variants={itemVariants}
           className="text-5xl md:text-7xl font-bold mb-6"
         >
-          <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-teal-600 via-cyan-600 to-orange-500 bg-clip-text text-transparent">
             Rajkumar
           </span>
         </motion.h1>
@@ -86,9 +83,9 @@ const HeroSection = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
         >
           <motion.button
-            whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(59, 130, 246, 0.3)" }}
+            whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(20, 184, 166, 0.3)" }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            className="px-8 py-4 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
           >
             <ArrowDown className="inline-block mr-2" size={20} />
             Download Resume
@@ -97,7 +94,7 @@ const HeroSection = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 border-2 border-blue-500 text-blue-500 rounded-full font-semibold hover:bg-blue-500 hover:text-white transition-all duration-300"
+            className="px-8 py-4 border-2 border-teal-500 text-teal-600 rounded-full font-semibold hover:bg-teal-500 hover:text-white transition-all duration-300"
           >
             <Mail className="inline-block mr-2" size={20} />
             Contact Me

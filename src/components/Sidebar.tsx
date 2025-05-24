@@ -34,11 +34,11 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection }) =>
           transition={{ duration: 0.2 }}
           className="text-center mb-8"
         >
-          <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mb-3 flex items-center justify-center">
+          <div className="w-16 h-16 bg-gradient-to-r from-teal-500 to-orange-500 rounded-full mx-auto mb-3 flex items-center justify-center">
             <span className="text-white font-bold text-xl">R</span>
           </div>
           {!isCollapsed && (
-            <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-xl font-bold bg-gradient-to-r from-teal-600 to-orange-600 bg-clip-text text-transparent">
               Rajkumar
             </h1>
           )}
@@ -62,7 +62,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection }) =>
                 whileTap={{ scale: 0.95 }}
                 className={`w-full flex items-center px-4 py-3 rounded-lg transition-all duration-300 ${
                   activeSection === item.id
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-white shadow-lg'
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
