@@ -1,34 +1,53 @@
-
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Home, User, Briefcase, Code, Settings, Mail, Award, ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+  Home,
+  User,
+  Briefcase,
+  Code,
+  Settings,
+  Mail,
+  ChevronLeft,
+  Award,
+} from 'lucide-react';
 
 interface SidebarProps {
   activeSection: string;
   setActiveSection: (section: string) => void;
+  isCollapsed: boolean;
+  setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
+const Sidebar: React.FC<SidebarProps> = ({
+  activeSection,
+  setActiveSection,
+  isCollapsed,
+  setIsCollapsed,
+}) => {
   const menuItems = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'about', label: 'About Me', icon: User },
     { id: 'experience', label: 'Experience', icon: Briefcase },
     { id: 'projects', label: 'Projects', icon: Code },
     { id: 'techstack', label: 'Tech Stack', icon: Settings },
-    { id: 'services', label: 'Services', icon: Settings },
-    // { id: 'certifications', label: 'Certifications', icon: Award },
+    { id: 'services', label: 'Services', icon: Award },
     { id: 'contact', label: 'Contact', icon: Mail },
   ];
 
   return (
     <motion.aside
-      animate={{ width: isCollapsed ? 80 : 256 }}
+      animate={{
+        width: isCollapsed ? (window.innerWidth < 1024 ? 0 : 80) : 256,
+      }}
       transition={{ duration: 0.3 }}
-      className="fixed left-0 top-0 h-full bg-white/80 backdrop-blur-lg border-r border-gray-200 z-50 shadow-xl"
+      className="fixed left-0 top-0 h-full z-50 bg-white/80 backdrop-blur-lg border-r border-gray-200 shadow-xl overflow-hidden"
     >
-      <div className="p-6">
+      {/* Sidebar content - Hidden completely on mobile when collapsed */}
+      <div
+        className={`p-6 ${
+          isCollapsed && window.innerWidth < 1024 ? 'hidden' : 'block'
+        }`}
+      >
         <motion.div
           animate={{ opacity: isCollapsed ? 0 : 1 }}
           transition={{ duration: 0.2 }}
@@ -43,13 +62,6 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection }) =>
             </h1>
           )}
         </motion.div>
-
-        <button
-          onClick={() => setIsCollapsed(!isCollapsed)}
-          className="absolute top-4 right-4 p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors"
-        >
-          {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
-        </button>
 
         <nav className="space-y-2">
           {menuItems.map((item) => {
@@ -82,6 +94,16 @@ const Sidebar: React.FC<SidebarProps> = ({ activeSection, setActiveSection }) =>
           })}
         </nav>
       </div>
+
+      {/* Collapse toggle button only visible when sidebar is expanded (desktop only) */}
+      {!(isCollapsed && window.innerWidth < 1024) && (
+        <button
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="absolute top-4 right-4 z-50 bg-white p-2 rounded-full shadow-md border border-gray-200 transition-all"
+        >
+          <ChevronLeft size={16} />
+        </button>
+      )}
     </motion.aside>
   );
 };
